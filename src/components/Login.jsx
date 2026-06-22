@@ -108,38 +108,36 @@ export default function Login({ onLogin }) {
           </button>
         </form>
 
-        {/* Test Accounts (Only visible in Development mode) */}
-        {import.meta.env.DEV && (
-          <div className="mt-8 pt-6 border-t border-white/10">
-            <p className="text-[9px] font-bold text-white/50 uppercase tracking-widest text-center mb-4 flex items-center justify-center gap-2">
-              <ShieldAlert size={12} className="text-amber-400" />
-              Test Account Access (Dev Only)
-            </p>
-            <div className="grid grid-cols-3 gap-2">
-              <button
-                onClick={() => fillCredentials('staf', 'staf123')} type="button"
-                className="py-2.5 px-2 rounded-[10px] bg-white/10 hover:bg-white/20 border border-white/10 text-center transition-colors cursor-pointer"
-              >
-                <p className="text-[9px] sm:text-[10px] font-bold text-white/70">Staf Field</p>
-                <p className="text-[10px] sm:text-[11px] font-800 text-white mt-0.5">staf123</p>
-              </button>
-              <button
-                onClick={() => fillCredentials('kabag', 'kabag123')} type="button"
-                className="py-2.5 px-2 rounded-[10px] bg-white/10 hover:bg-white/20 border border-white/10 text-center transition-colors cursor-pointer"
-              >
-                <p className="text-[9px] sm:text-[10px] font-bold text-white/70">Kabag Ops</p>
-                <p className="text-[10px] sm:text-[11px] font-800 text-white mt-0.5">kabag123</p>
-              </button>
-              <button
-                onClick={() => fillCredentials('admin', 'admin123')} type="button"
-                className="py-2.5 px-2 rounded-[10px] bg-white/10 hover:bg-white/20 border border-white/10 text-center transition-colors cursor-pointer"
-              >
-                <p className="text-[9px] sm:text-[10px] font-bold text-white/70">Super Admin</p>
-                <p className="text-[10px] sm:text-[11px] font-800 text-white mt-0.5">admin123</p>
-              </button>
-            </div>
+        {/* Test Accounts (Visible for ease of testing in portfolio) */}
+        <div className="mt-8 pt-6 border-t border-white/10">
+          <p className="text-[9px] font-bold text-white/50 uppercase tracking-widest text-center mb-4 flex items-center justify-center gap-2">
+            <ShieldAlert size={12} className="text-amber-400" />
+            Test Account Access (Demo)
+          </p>
+          <div className="grid grid-cols-3 gap-2">
+            <button
+              onClick={() => fillCredentials('staf', 'staf123')} type="button"
+              className="py-2.5 px-2 rounded-[10px] bg-white/10 hover:bg-white/20 border border-white/10 text-center transition-colors cursor-pointer"
+            >
+              <p className="text-[9px] sm:text-[10px] font-bold text-white/70">Staf Field</p>
+              <p className="text-[10px] sm:text-[11px] font-800 text-white mt-0.5">staf123</p>
+            </button>
+            <button
+              onClick={() => fillCredentials('kabag', 'kabag123')} type="button"
+              className="py-2.5 px-2 rounded-[10px] bg-white/10 hover:bg-white/20 border border-white/10 text-center transition-colors cursor-pointer"
+            >
+              <p className="text-[9px] sm:text-[10px] font-bold text-white/70">Kabag Ops</p>
+              <p className="text-[10px] sm:text-[11px] font-800 text-white mt-0.5">kabag123</p>
+            </button>
+            <button
+              onClick={() => fillCredentials('admin', 'admin123')} type="button"
+              className="py-2.5 px-2 rounded-[10px] bg-white/10 hover:bg-white/20 border border-white/10 text-center transition-colors cursor-pointer"
+            >
+              <p className="text-[9px] sm:text-[10px] font-bold text-white/70">Super Admin</p>
+              <p className="text-[10px] sm:text-[11px] font-800 text-white mt-0.5">admin123</p>
+            </button>
           </div>
-        )}
+        </div>
 
         <p className="text-center text-[11px] font-medium text-white/60 mt-6">
           Need help? <a href="#" className="text-emerald-400 hover:text-white transition-colors">Contact Administrator</a>
