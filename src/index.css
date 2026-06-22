@@ -1,0 +1,199 @@
+/* ─── Google Fonts ─────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+/* ─── Design Tokens ─────────────────────────────────────── */
+@theme {
+  --color-primary:         #059669;
+  --color-primary-dark:    #047857;
+  --color-primary-light:   #D1FAE5;
+  --color-primary-muted:   #A7F3D0;
+
+  --color-ink:             #0F172A;
+  --color-ink-secondary:   #475569;
+  --color-ink-muted:       #94A3B8;
+  --color-ink-subtle:      #CBD5E1;
+
+  --color-surface:         #FFFFFF;
+  --color-surface-raised:  #F8FAFC;
+  --color-surface-subtle:  #F1F5F9;
+
+  --font-sans:             "'Plus Jakarta Sans'", "Inter", sans-serif;
+  --font-display:          "'Plus Jakarta Sans'", "Inter", sans-serif;
+
+  --radius-card:   20px;
+  --radius-card-sm: 14px;
+  --radius-pill:   999px;
+}
+
+/* ─── Base Reset ─────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    font-family: 'Plus Jakarta Sans', Inter, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #F1F5F9;
+    color: #0F172A;
+    font-family: 'Plus Jakarta Sans', Inter, sans-serif;
+  }
+
+  /* Global focus-visible */
+  :focus-visible {
+    outline: 2px solid #059669;
+    outline-offset: 2px;
+  }
+  .no-ring:focus-visible { outline: none; }
+}
+
+/* ─── Card System ────────────────────────────────────────── */
+@layer components {
+
+  /* Base bento card */
+  .bento-card {
+    background: #FFFFFF;
+    border-radius: 20px;
+    box-shadow: 0px 1px 2px rgba(15,23,42,0.04), 0px 4px 20px rgba(15,23,42,0.06);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    overflow: hidden;
+  }
+
+  .bento-card-interactive:hover {
+    box-shadow: 0px 4px 8px rgba(15,23,42,0.06), 0px 16px 40px rgba(15,23,42,0.10);
+    transform: translateY(-2px);
+  }
+
+  /* Card padding */
+  .card-pad    { padding: 1.5rem; }       /* 24px */
+  .card-pad-sm { padding: 1.125rem; }     /* 18px */
+  .card-pad-lg { padding: 2rem; }         /* 32px */
+
+  /* Card section divider */
+  .card-divider { border-top: 1px solid #F1F5F9; }
+
+  /* Pill badge */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 999px;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .pill-primary { background: #D1FAE5; color: #047857; }
+  .pill-muted   { background: #F1F5F9; color: #64748B; }
+  .pill-warning { background: #FEF3C7; color: #B45309; }
+  .pill-danger  { background: #FEE2E2; color: #B91C1C; }
+  .pill-info    { background: #DBEAFE; color: #1D4ED8; }
+
+  /* Metric label */
+  .metric-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #94A3B8;
+  }
+
+  /* Metric value */
+  .metric-value {
+    font-size: 2.25rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: #0F172A;
+  }
+
+  /* Progress bar container */
+  .progress-track {
+    width: 100%;
+    height: 6px;
+    background: #F1F5F9;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .progress-fill-primary {
+    height: 100%;
+    background: linear-gradient(90deg, #059669, #10B981);
+    border-radius: 999px;
+    animation: progress-fill 1s cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+
+  /* Icon container */
+  .icon-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .icon-box-primary { background: #D1FAE5; color: #059669; }
+  .icon-box-blue    { background: #DBEAFE; color: #2563EB; }
+  .icon-box-amber   { background: #FEF3C7; color: #D97706; }
+  .icon-box-rose    { background: #FEE2E2; color: #DC2626; }
+  .icon-box-purple  { background: #EDE9FE; color: #7C3AED; }
+  .icon-box-cyan    { background: #CFFAFE; color: #0891B2; }
+  .icon-box-slate   { background: #F1F5F9; color: #475569; }
+}
+
+/* ─── Animations ────────────────────────────────────────── */
+@keyframes toast-in {
+  from { transform: translateX(calc(100% + 1.5rem)); opacity: 0; }
+  to   { transform: translateX(0);                   opacity: 1; }
+}
+@keyframes toast-out {
+  from { transform: translateX(0); opacity: 1; }
+  to   { transform: translateX(calc(100% + 1.5rem)); opacity: 0; }
+}
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+@keyframes progress-fill { from { width: 0%; } }
+@keyframes spin-smooth { to { transform: rotate(360deg); } }
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Utility Classes ───────────────────────────────────── */
+@layer utilities {
+  .animate-toast-in    { animation: toast-in 0.35s cubic-bezier(0.21,1.02,0.73,1) forwards; }
+  .animate-toast-out   { animation: toast-out 0.25s ease-in forwards; }
+  .animate-skeleton    { animation: skeleton-pulse 1.6s ease-in-out infinite; }
+  .spin-smooth         { animation: spin-smooth 0.8s linear infinite; }
+  .animate-fade-up     { animation: fade-up 0.4s ease-out; }
+  .drop-zone-active    {
+    border: 2px dashed #059669 !important;
+    background: rgba(5,150,105,0.04) !important;
+    box-shadow: 0 0 0 3px rgba(5,150,105,0.15) !important;
+    transform: scale(1.01);
+  }
+
+  /* Typography helpers */
+  .text-heading { color: #0F172A; }
+  .text-body    { color: #475569; }
+  .text-muted   { color: #94A3B8; }
+  .text-subtle  { color: #CBD5E1; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar        { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track  { background: transparent; }
+  ::-webkit-scrollbar-thumb  { background: #CBD5E1; border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+  /* Material icons baseline */
+  .material-icons { font-size: 20px; vertical-align: middle; line-height: 1; }
+}
